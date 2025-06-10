@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Portfolio</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #202020;
+      color: #333;
+    }
+    header {
+      text-align: center;
+      padding: 20px;
+      background-color: #222;
+      color: white;
+      animation: fadeIn 1s ease-in-out;
+    }
+    section {
+      margin: 20px auto;
+      padding: 20px;
+      border-radius: 15px;
+      background-color: rgb(202, 202, 202);
+      width: 80%;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+    h2 {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    .about-me {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 20px;
+      opacity: 0;
+      animation: slideIn 1s ease-in-out forwards;
+      animation-delay: 0.5s;
+    }
+    .about-me img {
+      width: 200px;
+      height: 200px;
+      border-radius: 50%;
+    }
+    .video-section, .image-section {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+    .video-container, .image-container {
+      text-align: center;
+      opacity: 0;
+      animation: fadeInUp 1s ease-in-out forwards;
+    }
+    .video-container:nth-child(1), .image-container:nth-child(1) { animation-delay: 0.8s; }
+    .video-container:nth-child(2), .image-container:nth-child(2) { animation-delay: 1.0s; }
+    .video-container:nth-child(3), .image-container:nth-child(3) { animation-delay: 1.2s; }
+    .video-container:nth-child(4), .image-container:nth-child(4) { animation-delay: 1.4s; }
+    .video-container:nth-child(5), .image-container:nth-child(5) { animation-delay: 1.6s; }
+
+    .video-container video, .video-container iframe {
+      width: 80%;
+      max-width: 600px;
+      height: auto;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    @keyframes slideIn {
+      from { transform: translateY(-20px); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
+    }
+
+    @keyframes fadeInUp {
+      from { transform: translateY(20px); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
+    }
+
+    .ytimg {
+      width: 200px;
+      height: auto;
+      margin-bottom: 10px;
+      border-radius: 50%; /* Makes the image circular */
+      object-fit: cover; /* Ensures the image fits well inside the circle */
+      border: 3px solid #ff0000; /* Optional border */
+    }
+    .primg {
+      width: 50px; /* Adjust the size as needed */
+      height: auto;
+      border-radius: 50%; /* Makes the image circular */
+      object-fit: cover; /* Ensures the image fits well inside the circle */
+      border: 2px solid #a8a8a8; /* Optional border */
+    }
+    /* Whatsapp Contact Me */
+    .contact-icon {
+      position: fixed;
+      right: 20px;
+      bottom: 20px;
+      background-color: #25D366; /* WhatsApp green color */
+      color: white;
+      padding: 10px 15px;
+      border-radius: 50px;
+      text-align: center;
+      cursor: pointer;
+      font-size: 18px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      transition: transform 0.3s ease-in-out, background-color 0.3s ease-in-out;
+    }
+    .contact-icon:hover {
+      transform: scale(1.1);
+      background-color: #128C7E;
+    }
+    .whatsapp-icon {
+      width: 30px;
+      height: 30px;
+    }
+    .video-container img {
+      transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out, background-color 0.3s ease-in-out;
+    }
+    .video-container img:hover {
+      transform: scale(1.1);
+    }
+
+    /* Styles for the category buttons */
+    .category-buttons {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    .category-button {
+      background-color: #555;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      margin: 5px;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 16px;
+      transition: background-color 0.3s ease;
+    }
+    .category-button:hover {
+      background-color: #777;
+    }
+    .category-button.active {
+      background-color: #007bff; /* Highlight active button */
+    }
+
+    /* Styles for video content containers */
+    .video-category-content {
+      display: none; /* Hidden by default */
+    }
+    .video-category-content.active {
+      display: flex; /* Or block, depending on desired layout */
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 10px;
+    }
+  </style>
+</head>
+<body>
+  <a href="https://wa.me/yourphonenumber" target="_blank" class="contact-icon">
+    <img src="https://cdn-icons-png.flaticon.com/512/733/733585.png" alt="WhatsApp" class="whatsapp-icon">
+    Contact Me
+  </a>
+  <header>
+    <h1>My Portfolio</h1>
+  </header>
+  <section class="about-me">
+    <img src="Bardach/Bardach Profile.png" alt="Your Picture">
+    <div>
+      <h2>About Me</h2>
+      <p>Hello, I'm Abderrahmane Bardach, a Video Editor, 3D Video Editor, Motion Designer And Graphic Designer.</p>
+    </div>
+  </section>
+
+  <section>
+    <h2>Programs I Use</h2>
+    <div class="image-section">
+      <div class="image-container">
+        <img src="Programs/Premiere Pro.png" alt="Premiere Pro" class="primg">
+        <p>Premiere Pro</p>
+      </div>
+      <div class="image-container">
+        <img src="Programs/After Effects.png" alt="After Effects" class="primg">
+        <p>After Effects</p>
+      </div>
+      <div class="image-container">
+        <img src="Programs/Blender.png" alt="Blender" class="primg">
+        <p>Blender</p>
+      </div>
+      <div class="image-container">
+        <img src="Programs/Photoshop.png" alt="Photoshop" class="primg">
+        <p>Photoshop</p>
+      </div>
+      <div class="image-container">
+        <img src="Programs/Illustrator.png" alt="Illustrator" class="primg">
+        <p>Illustrator</p>
+      </div>
+      <div class="image-container">
+        <img src="Programs/Indesign.png" alt="Indesign" class="primg">
+        <p>Indesign</p>
+      </div>
+      <div class="image-container">
+        <img src="Programs/Audition.png" alt="Audition" class="primg">
+        <p>Audition</p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>My Videos</h2>
+    <div class="category-buttons">
+      <button class="category-button active" onclick="showCategory('iramo-videos', this)">Videos</button>
+      <button class="category-button" onclick="showCategory('modox-videos', this)">Reels</button>
+      </div>
+
+    <div id="iramo-videos" class="video-category-content active" style="border-radius: 15px; padding: 15px; margin-bottom: 30px; background-color: #f8f8f8; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);">
+      <a href="https://www.youtube.com/watch?v=GwmELmFa6NY" target="_blank">
+        <img src="Thumbnails/BNL Thumbnails/1.jpg" alt="Video Thumbnail" style="width: 250px; height: auto; border-radius: 15px; object-fit: cover;">
+      </a>
+      <a href="https://youtu.be/uhDBP5DwOGc" target="_blank">
+        <img src="Thumbnails/MODOX Thumbnails/L2.jpg" alt="Video Thumbnail" style="width: 250px; height: auto; border-radius: 15px; object-fit: cover;">
+      </a>
+      <a href="https://www.youtube.com/watch?v=9nU-Z-uVJfY" target="_blank">
+        <img src="Thumbnails/MODOX Thumbnails/L1.jpg" alt="Video Thumbnail" style="width: 250px; height: auto; border-radius: 15px; object-fit: cover;">
+      </a>
+      <a href="https://www.youtube.com/watch?v=5ft4oNlNoKw" target="_blank">
+        <img src="Thumbnails/IRAMO Thumbnails/10.jpg" alt="Video Thumbnail" style="width: 250px; height: auto; border-radius: 15px; object-fit: cover;">
+      </a>
+      <a href="https://youtu.be/xnNfjSHZ58I" target="_blank">
+        <img src="Thumbnails/IRAMO Thumbnails/9.jpg" alt="Video Thumbnail" style="width: 250px; height: auto; border-radius: 15px; object-fit: cover;">
+      </a>
+      <a href="https://youtu.be/SHXeWzuJz-Q" target="_blank">
+        <img src="Thumbnails/IRAMO Thumbnails/8.jpg" alt="Video Thumbnail" style="width: 250px; height: auto; border-radius: 15px; object-fit: cover;">
+      </a>
+      <a href="https://youtu.be/iEj6Qde7jp0" target="_blank">
+        <img src="Thumbnails/IRAMO Thumbnails/7.jpg" alt="Video Thumbnail" style="width: 250px; height: auto; border-radius: 15px; object-fit: cover;">
+      </a>
+      <a href="https://youtu.be/16u1xXrdPqw" target="_blank">
+        <img src="Thumbnails/IRAMO Thumbnails/6.jpg" alt="Video Thumbnail" style="width: 250px; height: auto; border-radius: 15px; object-fit: cover;">
+      </a>
+      <a href="https://www.youtube.com/watch?v=psy6Sdczogw" target="_blank">
+      <img src="Thumbnails/IRAMO Thumbnails/5.jpg" alt="Video Thumbnail" style="width: 250px; height: auto; border-radius: 15px; object-fit: cover;">
+      </a>
+      <a href="https://www.youtube.com/watch?v=cZKhSeF78wc" target="_blank">
+      <img src="Thumbnails/IRAMO Thumbnails/4.jpg" alt="Video Thumbnail" style="width: 250px; height: auto; border-radius: 15px; object-fit: cover;">
+      </a>
+      <a href="https://www.youtube.com/watch?v=WNzBGBSOv6Y" target="_blank">
+      <img src="Thumbnails/IRAMO Thumbnails/3.jpg" alt="Video Thumbnail" style="width: 250px; height: auto; border-radius: 15px; object-fit: cover;">
+      </a>
+      <a href="https://www.youtube.com/watch?v=KFr4IDEFOT4" target="_blank">
+      <img src="Thumbnails/IRAMO Thumbnails/2.jpg" alt="Video Thumbnail" style="width: 250px; height: auto; border-radius: 15px; object-fit: cover;">
+      </a>
+      <a href="https://youtu.be/OTQgxvb8q5M?si=2Vcp0al5P85auunu" target="_blank">
+        <img src="Thumbnails/IRAMO Thumbnails/1.jpg" alt="Video Thumbnail" style="width: 250px; height: auto; border-radius: 15px; object-fit: cover;">
+      </a>
+            <a href="https://youtu.be/yxR1VHQ_KEM" target="_blank">
+        <img src="Thumbnails/Lassakri Thumbnails/2.jpg" alt="Video Thumbnail" style="width: 250px; height: auto; border-radius: 15px; object-fit: cover;">
+      </a>
+      <a href="https://youtu.be/T04bWOL45Io" target="_blank">
+        <img src="Thumbnails/Lassakri Thumbnails/1.jpg" alt="Video Thumbnail" style="width: 250px; height: auto; border-radius: 15px; object-fit: cover;">
+      </a>
+    </div>
+
+    <div id="modox-videos" class="video-category-content" style="flex-direction: column; align-items: center; border-radius: 15px; padding: 15px; margin-bottom: 30px; background-color: #f8f8f8; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);">
+      <div>
+        <a href="https://www.youtube.com/shorts/q4StKiY-bE8" target="_blank">
+          <img src="Thumbnails/Driss Thumbnails/1.jpg" alt="Video Thumbnail" style="width: 150px; height: auto; border-radius: 15px; object-fit: cover;">
+        </a>
+        <a href="https://www.youtube.com/shorts/SzbC2_uPcbg" target="_blank">
+          <img src="Thumbnails/MODOX Thumbnails/6.jpg" alt="Video Thumbnail" style="width: 150px; height: auto; border-radius: 15px; object-fit: cover;">
+        </a>
+        <a href="https://www.youtube.com/shorts/AVr0ZwJVcyI" target="_blank">
+          <img src="Thumbnails/MODOX Thumbnails/5.jpg" alt="Video Thumbnail" style="width: 150px; height: auto; border-radius: 15px; object-fit: cover;">
+        </a>
+        <a href="https://www.youtube.com/shorts/dyFNqaZrIG0" target="_blank">
+          <img src="Thumbnails/MODOX Thumbnails/4.png" alt="Video Thumbnail" style="width: 150px; height: auto; border-radius: 15px; object-fit: cover;">
+        </a>
+        <a href="https://www.youtube.com/shorts/xRKb8STfobo" target="_blank">
+          <img src="Thumbnails/MODOX Thumbnails/3.png" alt="Video Thumbnail" style="width: 150px; height: auto; border-radius: 15px; object-fit: cover;">
+        </a>
+        <a href="https://www.youtube.com/shorts/QpcsVlfYGZ0" target="_blank">
+          <img src="Thumbnails/MODOX Thumbnails/2.jpg" alt="Video Thumbnail" style="width: 150px; height: auto; border-radius: 15px; object-fit: cover;">
+        </a>
+        <a href="https://www.youtube.com/shorts/kiJKAkVzSwI" target="_blank">
+          <img src="Thumbnails/MODOX Thumbnails/1.jpg" alt="Video Thumbnail" style="width: 150px; height: auto; border-radius: 15px; object-fit: cover;">
+        </a>
+      </div>
+    </div>
+
+  </section>
+  <section>
+    <h2>Channels That I Worked With:</h2>
+    <div class="image-section">
+      <div class="image-container">
+        <img src="Youtubers/Lassakri.jpg" alt="" class="ytimg">
+        <p style="font-size: larger">Lassakri - لعسكري</p>
+        <p>977K subscribers</p>
+      </div>
+      <div class="image-container">
+        <img src="Youtubers/Iramo.jpg" alt="" class="ytimg">
+        <p style="font-size: larger">IRAMO V2</p>
+        <p>100K subscribers</p>
+      </div>
+      <div class="image-container">
+        <img src="Youtubers/Driss.jpg" alt="" class="ytimg">
+        <p style="font-size: larger">Driss El Ommal</p>
+        <p>123K subscribers</p>
+      </div>
+      <div class="image-container">
+        <img src="Youtubers/MODOX.jpg" alt="" class="ytimg">
+        <p style="font-size: larger">MODOX - مودوكْس</p>
+        <p>819K subscribers</p>
+      </div>
+      <div class="image-container">
+        <img src="Youtubers/BNL.png" alt="" class="ytimg">
+        <p style="font-size: larger">BNL</p>
+        <p>8.02M subscribers</p>
+      </div>
+      <div class="image-container">
+        <img src="Youtubers/Temu.png" alt="" class="ytimg">
+        <p style="font-size: larger">Temu</p>
+      </div>
+      <div class="image-container">
+        <img src="Youtubers/Infinix.png" alt="" class="ytimg">
+        <p style="font-size: larger">Infinix</p>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    // JavaScript to handle showing/hiding video categories
+    function showCategory(categoryId, clickedButton) {
+      // Get all video category content divs
+      const allCategoryContents = document.querySelectorAll('.video-category-content');
+      allCategoryContents.forEach(content => {
+        content.classList.remove('active'); // Hide all
+      });
+
+      // Get all category buttons
+      const allCategoryButtons = document.querySelectorAll('.category-button');
+      allCategoryButtons.forEach(button => {
+        button.classList.remove('active'); // Deactivate all buttons
+      });
+
+      // Show the selected category content
+      const selectedCategory = document.getElementById(categoryId);
+      if (selectedCategory) {
+        selectedCategory.classList.add('active'); // Show the selected one
+      }
+
+      // Activate the clicked button
+      if (clickedButton) {
+        clickedButton.classList.add('active');
+      }
+    }
+
+    // Show the first category by default on page load
+    document.addEventListener('DOMContentLoaded', (event) => {
+        showCategory('iramo-videos', document.querySelector('.category-button.active'));
+    });
+  </script>
+</body>
+</html>
